@@ -34,9 +34,9 @@ const generateGalaxy = () => {
     for(let i = 0; i < parameters.count; i++) {
         const i3 = i * 3
 
-        positions[i] = Math.random()
-        positions[i + 1] = Math.random()
-        positions[i + 2] = Math.random()
+        positions[i] = (Math.random() - 0.5) * 3
+        positions[i + 1] = (Math.random() - 0.5) * 3
+        positions[i + 2] = (Math.random() - 0.5) * 3
     }
 
     geometry.setAttribute(
@@ -52,8 +52,15 @@ const generateGalaxy = () => {
         size: parameters.size,
         sizeAttenuation: true,
         depthWrite: false,
-        blending: true
+        blending: THREE.AdditiveBlending
     })
+
+    /**
+     * Points
+     */
+
+    const points = new THREE.Points(geometry, material)
+    scene.add(points)
 }
 
 generateGalaxy()
